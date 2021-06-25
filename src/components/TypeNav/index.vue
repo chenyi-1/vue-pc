@@ -1,7 +1,7 @@
 <template>
   <div class="type-nav">
-    <div class="container">
-      <h2 class="all">全部商品分类</h2>
+    <div class="container" @mouseleave="isShow = false">
+      <h2 class="all" @mouseenter="isShow = true">全部商品分类</h2>
       <nav class="nav">
         <a href="###">服装城</a>
         <a href="###">美妆馆</a>
@@ -12,7 +12,7 @@
         <a href="###">有趣</a>
         <a href="###">秒杀</a>
       </nav>
-      <div class="sort">
+      <div class="sort" v-show="$route.path === '/' || isShow">
         <div class="all-sort-list2" @click="toSearch">
           <div class="item bo" v-for="c1 in categoryList" :key="c1.categoryId">
             <h3>
@@ -54,7 +54,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -68,12 +67,13 @@ export default {
   data() {
     return {
       categoryList: [],
+      isShow: false,
     };
   },
   async mounted() {
     reqGetCategoryList()
       .then((res) => {
-        console.log(res)
+        console.log(res);
         this.categoryList = res;
       })
       .catch((e) => {

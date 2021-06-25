@@ -32,8 +32,8 @@
       <router-link to="/">
         <img src="./logo.b2878689.png" />
       </router-link>
-      <form class="header-form">
-        <input type="text" />
+      <form class="header-form" @submit.prevent="toSearch">
+        <input type="text" v-model="keyword" />
         <button>搜索</button>
       </form>
     </div>
@@ -43,6 +43,27 @@
 <script>
 export default {
   name: "Header",
+  data() {
+    return {
+      keyword: "",
+    };
+  },
+  methods: {
+    toString() {
+      const keyword = this.keyword.trim();
+
+      const location = {
+        name: "Search",
+        query: this.$route.query,
+      };
+
+      if (keyword) {
+        location.params = { keyword };
+      }
+
+      this.$router.history.push(location);
+    },
+  },
 };
 </script>
 
