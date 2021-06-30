@@ -1,6 +1,11 @@
-import Mock from "mockjs";
+// https://github.com/nuysoft/Mock/wiki/Getting-Started
+import Mock from 'mockjs';
 
-Mock.mock("/mock/banners", "get", {
+// Mock.mock(请求地址，请求方式，响应的数据)
+// 请求方式必须是小写
+
+// 拦截 /mock/banners 请求，并返回响应的数据
+Mock.mock('/mock/banners', 'get', {
   code: 200,
   data: [
     {
@@ -19,12 +24,12 @@ Mock.mock("/mock/banners", "get", {
       "id": 4,
       "imgUrl": "/images/banner4.jpg"
     }
-  ],
-});
+  ]
+})
 
-Mock.mock('/mock/floors', 'get',{
+Mock.mock('/mock/floors', 'get', {
   code: 200,
-  data:[{
+  data: [{
     "id": "001",
     "name": "家用电器",
     "keywords": ["节能补贴", "4K电视", "空气净化器", "IH电饭煲", "滚筒洗衣机", "电热水器"],
@@ -133,6 +138,6 @@ Mock.mock('/mock/floors', 'get',{
       "/images/floor-1-6.png"
     ],
     "bigImg": "/images/floor-1-4.png"
-  
-  }]
+  }
+  ]
 })

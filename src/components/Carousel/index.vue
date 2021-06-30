@@ -41,22 +41,28 @@ export default {
     },
   },
   watch: {
-    imageList() {
-      // 当此函数触发了，就有值了～
-      this.$nextTick(() => {
-        // 当此函数触发了，DOM元素就更新好了～
-        this.swiper = new Swiper(this.$refs.swiper, {
-          navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          },
-          pagination: {
-            el: ".swiper-pagination",
-          },
-          loop: true, // 无缝轮播
-          autoplay: true, // 自动轮播
+    imageList: {
+      handler(imageList) {
+        // 新问题：第一个轮播图触发两次，第一次触发没有意义，第一次没有数据
+        if (!imageList.length) return;
+        // 当此函数触发了，就有值了～
+        this.$nextTick(() => {
+          // 等页面更新完成在触发回调，只触发一次
+          // 当此函数触发了，DOM元素就更新好了～
+          this.swiper = new Swiper(this.$refs.swiper, {
+            navigation: {
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+              el: ".swiper-pagination",
+            },
+            loop: true, // 无缝轮播
+            autoplay: true, // 自动轮播
+          });
         });
-      });
+      },
+      immediate: true, // 让watch一上来触发
     },
   },
   mounted() {

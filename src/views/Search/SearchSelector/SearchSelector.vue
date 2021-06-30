@@ -39,19 +39,27 @@
 
 <script>
 import { mapState } from "vuex";
+
 export default {
   name: "SearchSelector",
+  props: {
+    options: Object,
+  },
   computed: {
     ...mapState("search", ["trademarkList", "attrsList"]),
   },
   methods: {
     searchTrademark(e) {
       const { tm } = e.target.dataset;
+      // 防止重复点击
+      if (tm === this.options.trademark) return;
+      // 触发自定义事件 --> 将tm参数传递给search组件使用
       this.$emit("search", { trademark: tm });
     },
-
     searchAttr(e) {
       const { attr } = e.target.dataset;
+      // 防止重复点击
+      if (this.options.props.includes(attr)) return;
       this.$emit("search", { prop: attr });
     },
   },

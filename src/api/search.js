@@ -1,9 +1,12 @@
-import request from "../utils/request";
+import request from '../utils/request'
 
-export const reqSearchGoodsList = (data) => {
+// 搜索商品
+export const reqSearchGoodsList = (
+  data
+) => {
   return request({
-    method: "POST",
-    url: "/list",
-    data,
-  });
-};
+    method: 'POST',
+    url: '/list',
+    data
+  })
+}

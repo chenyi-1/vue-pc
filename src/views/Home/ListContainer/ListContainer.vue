@@ -2,7 +2,7 @@
   <div class="list-container">
     <div class="sortList clearfix">
       <div class="center">
-        <!--banner轮播-->
+        <!-- banner轮播 -->
         <Carousel :imageList="banners" />
       </div>
       <div class="right">
@@ -82,17 +82,17 @@
 import Carousel from "../../../components/Carousel";
 
 import { reqGetBanners } from "../../../api/home";
+
 export default {
   name: "ListContainer",
-  components: {
-    Carousel,
-  },
   data() {
     return {
       banners: [],
     };
   },
-
+  components: {
+    Carousel,
+  },
   mounted() {
     reqGetBanners()
       .then((res) => {

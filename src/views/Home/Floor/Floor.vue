@@ -5,6 +5,7 @@
         <h3 class="fl">{{ floor.name }}</h3>
         <div class="fr">
           <ul class="nav-tabs clearfix">
+            <!-- key的值有id用id，没有id考虑场景使用index，再不行其他值 -->
             <li
               class="active"
               v-for="(nav, index) in floor.navList"
@@ -27,6 +28,12 @@
               <img :src="floor.imgUrl" alt="img" />
             </div>
             <div class="floorBanner">
+              <!-- 
+                轮播图 
+                一上来floor.carouselList就有值了，后续不回再发生变化了
+                还会触发watch吗？不会
+                解决：immediate：true才会触发
+              -->
               <Carousel :imageList="floor.carouselList" />
             </div>
             <div class="split">
@@ -59,6 +66,7 @@
 
 <script>
 import Carousel from "../../../components/Carousel";
+
 export default {
   name: "Floor",
   props: {

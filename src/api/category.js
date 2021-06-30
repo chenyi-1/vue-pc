@@ -1,8 +1,8 @@
-import request from "../utils/request";
+import request from '../utils/request'
 
 export const reqGetCategoryList = () => {
   return request({
-    method: "GET",
-    url: "/product/getBaseCategoryList", 
-  });
-};
+    method: 'GET',
+    url: '/product/getBaseCategoryList'
+  })
+}
